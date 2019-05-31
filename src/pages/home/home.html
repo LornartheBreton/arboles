@@ -1,14 +1,21 @@
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Arboles
     </ion-title>
-  </ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="openCamera()">
+        <ion-icon name="camera"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+    <ion-card *ngFor="let i of items">
+      <img src={{i.url}}>
+      <h2>{{i.comentario}}</h2>
+    </ion-card>
+  </ion-list>
 </ion-content>
