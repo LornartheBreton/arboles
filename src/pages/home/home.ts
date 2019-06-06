@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController} from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagenPage } from '../imagen/imagen';
 
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
-import { unescapeIdentifier } from '@angular/compiler';
+import { LoginPage } from '../login/login';
+
 
 @Component({
   selector: 'page-home',
@@ -15,19 +16,20 @@ import { unescapeIdentifier } from '@angular/compiler';
 export class HomePage {
 
   imagen = ImagenPage;
-
+  login = LoginPage;
   user: firebase.User;
   db: firebase.firestore.Firestore;
 
   items = [];
 
   constructor(public navCtrl: NavController,
-    public camera: Camera) {
+    public camera: Camera, 
+    public toastCtrl: ToastController) {
 
     this.user = firebase.auth().currentUser;
     this.db = firebase.firestore();
 
-    this.db.collection('imagenes')
+    this.db.collection('arboles')
       .onSnapshot(query => {
         this.items = [];
         query.forEach(imagen => {
@@ -40,6 +42,7 @@ export class HomePage {
   }
 
   openCamera() {
+    
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -54,5 +57,26 @@ export class HomePage {
         console.log(JSON.stringify(error));
       });
   }
+
+  logOut() {
+    firebase.auth().signOut()
+      .then(data => {
+        const toast = this.toastCtrl.create({
+          message: "Logged out successfully",
+          duration: 3000,
+          position: "top"
+        });
+        toast.present();
+        this.navCtrl.setRoot(this.login);
+      })
+      .catch(error => {
+        const toast = this.toastCtrl.create({
+          message: "Error. Please try again later",
+          duration: 3000,
+          position: "top"
+        });
+      });
+  }
+
 
 }

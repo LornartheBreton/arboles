@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header >
   <ion-toolbar>
-    <ion-title>
+    <ion-title style="background-color: rgb(96, 211, 148)">
       Arboles
     </ion-title>
     <ion-buttons start>
@@ -8,14 +8,23 @@
         <ion-icon name="camera"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logOut()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding style="background-color: rgb(170, 246, 131)">
   <ion-list>
-    <ion-card *ngFor="let i of items">
+    <ion-card *ngFor="let i of items" style="background-color: rgb(255, 217, 125)">
+      <h1>{{i.tipo}}</h1>
       <img src={{i.url}}>
-      <h2>{{i.comentario}}</h2>
+      <h2>Latitud: {{i.latitude}}</h2>
+      <h2>Longitude: {{i.longitude}}</h2>
+      <h2>Ancho de copa: {{i.anchoc}} cm.</h2>
+      <h2>Ancho de tronco: {{i.anchot}} cm.</h2>
     </ion-card>
   </ion-list>
 </ion-content>

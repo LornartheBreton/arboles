@@ -11,6 +11,7 @@ import { AddPage } from '../pages/add/add';
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ImagenPage } from '../pages/imagen/imagen';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ImagenPage } from '../pages/imagen/imagen';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Camera
+    Camera,
+    Geolocation
   ]
 })
 export class AppModule {}

@@ -6,22 +6,23 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Imagen</ion-title>
+    <ion-title style="background-color: rgb(96, 211, 148)">Imagen</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding style="background-color: rgb(170, 246, 131)">
   <img src={{imagen}}>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <ion-input placebolder="Comment" 
-    [(ngModel)]="comment"></ion-input>
+
+    <ion-input placebolder="Tipo" [(ngModel)]="tipo"></ion-input>
+    <ion-input placebolder="Ancho de copa" [(ngModel)]="ancho1"></ion-input>
+    <ion-input placebolder="Ancho de tronco" [(ngModel)]="ancho2"></ion-input>
     <ion-buttons end>
       <button ion-button icon-only (click)="subirImagen()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>
-  </ion-toolbar>
+  
 </ion-footer>
